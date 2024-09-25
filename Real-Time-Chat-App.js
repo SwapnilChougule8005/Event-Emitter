@@ -1,4 +1,4 @@
-const EventEmitter = require('events');
+/*const EventEmitter = require('events');
 
 class Chat extends EventEmitter {
     constructor() {
@@ -39,5 +39,22 @@ class Chat extends EventEmitter {
   chatRoom.sendMessage('Swapnil', 'Hello, everyone');
   chatRoom.addUser('Vrushabh');
   chatRoom.sendMessage('Vrushabh', 'Hey, Swapnil');
-  chatRoom.removeUser('Swapnil');
-  
+  chatRoom.removeUser('Swapnil');*/
+ 
+
+const EventEmitter = require('events');
+const chatRoom = new EventEmitter();
+
+function joinChat(user) {
+  chatRoom.once('message', (message) => {
+    console.log(`${user} received: ${message}`);
+  })
+}
+
+joinChat('Alice');
+joinChat('Bob');
+chatRoom.emit('message', 'Hello, World');
+chatRoom.emit('message', 'hey second time');
+
+
+
